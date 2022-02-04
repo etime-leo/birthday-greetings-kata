@@ -2,6 +2,6 @@ package domain;
 
 import java.util.List;
 
-public interface EmployeeRepository {
+public interface EmployeePort {
     List<Employee> all();
 }

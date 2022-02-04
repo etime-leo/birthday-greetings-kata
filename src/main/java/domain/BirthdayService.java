@@ -1,12 +1,24 @@
 package domain;
 
 
+import java.time.LocalDate;
+import java.util.List;
+
 public class BirthdayService {
 
-    public BirthdayService(EmployeeRepository employeeRepository, EmailService service) {
+    private final EmployeePort employees;
+    private final EmailService service;
+
+    public BirthdayService(EmployeePort employees, EmailService service) {
+        this.employees = employees;
+        this.service = service;
     }
 
-    public void sendGreetings(String s) {
+    public void sendGreetings(LocalDate birthdayDate) {
+        List<Employee> employeeList = employees.all();
 
+        if (!employeeList.isEmpty()) {
+            service.send();
+        }
     }
 }
