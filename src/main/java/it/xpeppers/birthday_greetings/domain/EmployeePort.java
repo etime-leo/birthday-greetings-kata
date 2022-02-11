@@ -1,4 +1,4 @@
-package domain;
+package it.xpeppers.birthday_greetings.domain;
 
 import java.util.List;
 

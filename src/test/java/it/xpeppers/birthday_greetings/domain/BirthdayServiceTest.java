@@ -1,11 +1,9 @@
-package domain;
+package it.xpeppers.birthday_greetings.domain;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-
 import static java.time.LocalDate.*;
+import static java.util.Arrays.*;
 import static java.util.Collections.*;
 import static org.mockito.Mockito.*;
 
@@ -13,9 +11,9 @@ public class BirthdayServiceTest {
 
     private BirthdayService service;
 
-    private EmployeePort employeePort = mock(EmployeePort.class);
+    private final EmployeePort employeePort = mock(EmployeePort.class);
 
-    private EmailService emailService = mock(EmailService.class);
+    private final EmailService emailService = mock(EmailService.class);
 
     @Test
     void should_send_no_mail_when_no_employee_found() {
@@ -37,5 +35,17 @@ public class BirthdayServiceTest {
         service.sendGreetings(of(2020,10,10));
 
         verify(emailService).send();
+    }
+
+    @Test
+    void should_send_email_in_a_list_of_3_employee() {
+        when(employeePort.all()).thenReturn(asList(new Employee(),
+                                                   new Employee(),
+                                                   new Employee()));
+
+        service = new BirthdayService(employeePort, emailService);
+        service.sendGreetings(of(2020,10,10));
+
+        verify(emailService, times(3)).send();
     }
 }

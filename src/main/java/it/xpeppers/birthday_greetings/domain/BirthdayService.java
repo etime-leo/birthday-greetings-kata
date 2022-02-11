@@ -1,4 +1,4 @@
-package domain;
+package it.xpeppers.birthday_greetings.domain;
 
 
 import java.time.LocalDate;
@@ -18,7 +18,9 @@ public class BirthdayService {
         List<Employee> employeeList = employees.all();
 
         if (!employeeList.isEmpty()) {
-            service.send();
+            for (Employee employee:employeeList) {
+                service.send();
+            }
         }
     }
 }
