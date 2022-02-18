@@ -28,16 +28,6 @@ public class BirthdayServiceTest {
     }
 
     @Test
-    void should_send_mail_when_employees_found() {
-        when(employeePort.all()).thenReturn(singletonList(new Employee()));
-
-        service = new BirthdayService(employeePort, emailService);
-        service.sendGreetings(of(2020,10,10));
-
-        verify(emailService).send();
-    }
-
-    @Test
     void should_send_email_in_a_list_of_3_employee() {
         when(employeePort.all()).thenReturn(asList(new Employee(),
                                                    new Employee(),

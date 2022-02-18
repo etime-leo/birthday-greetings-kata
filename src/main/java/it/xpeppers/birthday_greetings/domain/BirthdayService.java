@@ -17,10 +17,9 @@ public class BirthdayService {
     public void sendGreetings(LocalDate birthdayDate) {
         List<Employee> employeeList = employees.all();
 
-        if (!employeeList.isEmpty()) {
-            for (Employee employee:employeeList) {
-                service.send();
-            }
+        for (Employee employee : employeeList) {
+            service.send();
         }
+
     }
 }
